@@ -13,8 +13,9 @@ This project simulates text editor functionality using two stacks:
    ```bash
    gcc undo_redo.c -o undo_redo
 2. Run 
+    ```bash
     ./undo_redo
-    
+
 🧰 Technologies Used
 
 C Programming
