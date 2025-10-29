@@ -4,29 +4,23 @@
 
 #define MAX 100
 #define TEXT_SIZE 1000
-
-// Stack structure for storing text states
 typedef struct {
     char items[MAX][TEXT_SIZE];
     int top;
 } Stack;
 
-// Initialize stack
 void init(Stack *s) {
     s->top = -1;
 }
 
-// Check if stack is empty
 int isEmpty(Stack *s) {
     return s->top == -1;
 }
 
-// Check if stack is full
 int isFull(Stack *s) {
     return s->top == MAX - 1;
 }
 
-// Push text state to stack
 void push(Stack *s, const char *text) {
     if (isFull(s)) {
         printf("Stack Overflow!\n");
@@ -35,7 +29,6 @@ void push(Stack *s, const char *text) {
     strcpy(s->items[++(s->top)], text);
 }
 
-// Pop text state from stack
 void pop(Stack *s, char *text) {
     if (isEmpty(s)) {
         printf("Stack Underflow!\n");
@@ -45,7 +38,7 @@ void pop(Stack *s, char *text) {
     strcpy(text, s->items[(s->top)--]);
 }
 
-// Peek top of stack (current text)
+// current text peek
 void peek(Stack *s, char *text) {
     if (isEmpty(s)) {
         text[0] = '\0';
@@ -72,18 +65,18 @@ int main() {
         printf("5. Exit\n");
         printf("Enter your choice: ");
         scanf("%d", &choice);
-        getchar(); // to consume newline
+        getchar(); 
 
         switch (choice) {
             case 1:
-                // Save current state before editing
+                
                 push(&undoStack, currentText);
 
                 printf("Enter new text: ");
                 fgets(currentText, TEXT_SIZE, stdin);
-                currentText[strcspn(currentText, "\n")] = '\0'; // remove newline
+                currentText[strcspn(currentText, "\n")] = '\0'; 
 
-                // Clear redo stack on new input
+                
                 init(&redoStack);
                 printf("Text updated.\n");
                 break;
